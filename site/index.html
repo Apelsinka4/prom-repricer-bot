@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="uk">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Prom Repricer Bot автоматично моніторить конкурентів на Prom.ua, захищає маржу і оновлює ціни через Telegram."
+    />
+    <title>Prom Repricer Bot | Автоматичний repricing для Prom.ua</title>
+    <link rel="preconnect" href="https://unpkg.com" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="site-header" data-elevated="false">
+      <a class="brand" href="#top" aria-label="Prom Repricer Bot">
+        <span class="brand-mark">PR</span>
+        <span>Prom Repricer Bot</span>
+      </a>
+      <nav class="nav-links" aria-label="Основна навігація">
+        <a href="#product">Продукт</a>
+        <a href="#automation">Автоматизація</a>
+        <a href="#plans">Плани</a>
+      </nav>
+      <a class="header-action" href="#demo" aria-label="Запросити демо">
+        <i data-lucide="send"></i>
+        <span>Запросити демо</span>
+      </a>
+    </header>
+
+    <main id="top">
+      <section class="hero" aria-labelledby="hero-title">
+        <canvas id="repricer-canvas" aria-hidden="true"></canvas>
+        <div class="hero-noise" aria-hidden="true"></div>
+        <div class="hero-content">
+          <p class="eyebrow">Telegram-first сервіс для e-commerce команд</p>
+          <h1 id="hero-title">Prom Repricer Bot</h1>
+          <p class="hero-copy">
+            Автоматично стежить за конкурентами, перераховує ціну за вашою
+            стратегією і не дає продавати нижче маржі.
+          </p>
+          <div class="hero-actions">
+            <a class="primary-action" href="#demo">
+              <i data-lucide="rocket"></i>
+              <span>Підключити магазин</span>
+            </a>
+            <a class="secondary-action" href="#product">
+              <i data-lucide="activity"></i>
+              <span>Подивитись логіку</span>
+            </a>
+          </div>
+        </div>
+        <aside class="hero-panel" aria-label="Live repricing snapshot">
+          <div class="panel-topline">
+            <span class="live-dot"></span>
+            <span>Live repricing</span>
+            <strong>Prom.ua</strong>
+          </div>
+          <div class="price-stack">
+            <div>
+              <span>Ваша ціна</span>
+              <strong id="your-price">1 249 ₴</strong>
+            </div>
+            <div>
+              <span>Конкурент</span>
+              <strong id="market-price">1 217 ₴</strong>
+            </div>
+            <div>
+              <span>Нова ціна</span>
+              <strong id="next-price">1 216 ₴</strong>
+            </div>
+          </div>
+          <div class="strategy-strip">
+            <span>beat_by_step</span>
+            <span>margin lock: 18%</span>
+          </div>
+        </aside>
+      </section>
+
+      <section class="metric-band" aria-label="Ключові показники">
+        <div>
+          <strong>24/7</strong>
+          <span>моніторинг конкурентів</span>
+        </div>
+        <div>
+          <strong>5 URL</strong>
+          <span>на один товар</span>
+        </div>
+        <div>
+          <strong>3 режими</strong>
+          <span>цінових стратегій</span>
+        </div>
+        <div>
+          <strong>0 ручних</strong>
+          <span>перевірок у таблицях</span>
+        </div>
+      </section>
+
+      <section id="product" class="section product-section">
+        <div class="section-heading">
+          <p class="eyebrow">Продукт</p>
+          <h2>Цінова операційка, яка живе там, де зручно продавцю</h2>
+          <p>
+            Бот поєднує Prom API, парсер конкурентів, правила маржі та Telegram
+            сповіщення в один керований контур.
+          </p>
+        </div>
+        <div class="feature-grid">
+          <article class="feature-card">
+            <i data-lucide="scan-search"></i>
+            <h3>Конкурентна розвідка</h3>
+            <p>Кілька URL на товар, вибір найнижчої ціни і події для аудиту.</p>
+          </article>
+          <article class="feature-card">
+            <i data-lucide="sliders-horizontal"></i>
+            <h3>Стратегії ціни</h3>
+            <p>Beat by step, match lowest або режим сповіщення без зміни ціни.</p>
+          </article>
+          <article class="feature-card">
+            <i data-lucide="shield-check"></i>
+            <h3>Захист маржі</h3>
+            <p>Мінімальна ціна, собівартість і відсоток маржі в кожному правилі.</p>
+          </article>
+          <article class="feature-card">
+            <i data-lucide="message-square-text"></i>
+            <h3>Telegram контроль</h3>
+            <p>Додавання товарів, історія та помилки прямо в чаті.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="automation" class="section automation-section">
+        <div class="automation-copy">
+          <p class="eyebrow">Автоматизація</p>
+          <h2>Від URL конкурента до нової ціни без ручного моніторингу</h2>
+          <p>
+            Сервіс прибирає найповільнішу частину роботи менеджера: перевірку
+            сторінок, копіювання цін і страх випадково продати нижче прибутку.
+          </p>
+        </div>
+        <div class="flow" aria-label="Repricing pipeline">
+          <div class="flow-step active">
+            <i data-lucide="link"></i>
+            <span>URL конкурентів</span>
+          </div>
+          <div class="flow-step">
+            <i data-lucide="bot"></i>
+            <span>Парсер ціни</span>
+          </div>
+          <div class="flow-step">
+            <i data-lucide="calculator"></i>
+            <span>Стратегія + маржа</span>
+          </div>
+          <div class="flow-step">
+            <i data-lucide="shopping-bag"></i>
+            <span>Prom API</span>
+          </div>
+          <div class="flow-step">
+            <i data-lucide="bell-ring"></i>
+            <span>Telegram звіт</span>
+          </div>
+        </div>
+      </section>
+
+      <section id="plans" class="section plans-section">
+        <div class="section-heading">
+          <p class="eyebrow">Плани</p>
+          <h2>Запуск від малого каталогу до системної цінової команди</h2>
+        </div>
+        <div class="plans">
+          <article class="plan-card">
+            <span>Starter</span>
+            <strong>до 30 SKU</strong>
+            <p>Для перевірки гіпотези на найчутливіших товарах.</p>
+          </article>
+          <article class="plan-card featured">
+            <span>Growth</span>
+            <strong>до 300 SKU</strong>
+            <p>Для магазинів, де ціна конкурентів уже напряму впливає на продажі.</p>
+          </article>
+          <article class="plan-card">
+            <span>Ops</span>
+            <strong>custom</strong>
+            <p>Для команд з власними правилами, логами та SLA.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="demo" class="cta-section">
+        <div>
+          <p class="eyebrow">Запуск</p>
+          <h2>Підключіть перші товари і побачте, де ціна втрачає продажі</h2>
+        </div>
+        <a class="primary-action" href="mailto:sales@example.com?subject=Prom%20Repricer%20Bot%20demo">
+          <i data-lucide="calendar-check"></i>
+          <span>Забронювати демо</span>
+        </a>
+      </section>
+    </main>
+
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+    <script src="./app.js"></script>
+  </body>
+</html>

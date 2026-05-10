@@ -1,0 +1,21 @@
+[Unit]
+Description=Prom Repricer Telegram Bot
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=/opt/prom-repricer-bot
+EnvironmentFile=/opt/prom-repricer-bot/.env
+ExecStart=/opt/prom-repricer-bot/.venv/bin/python -m bot.main
+Restart=always
+RestartSec=10
+TimeoutStopSec=30
+KillSignal=SIGINT
+SyslogIdentifier=prom-repricer-bot
+
+NoNewPrivileges=true
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target
